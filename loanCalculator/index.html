@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <header>
+            <h1>Loan Calculator</h1>
+            <button id="themeToggle" class="theme-toggle">
+                <span class="light">🌞</span>
+                <span class="dark">🌙</span>
+            </button>
+        </header>
+
+        <div class="calculator-card">
+            <form id="loanForm">
+                <div class="input-group">
+                    <label for="currency">Currency</label>
+                    <select id="currency" class="currency-select">
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                        <option value="JPY">JPY (¥)</option>
+                        <option value="CNY">CNY (¥)</option>
+                        <option value="INR">INR (₹)</option>
+                        <option value="custom">Custom Currency</option>
+                    </select>
+                </div>
+                <div id="customCurrencyInput" class="input-group hidden">
+                    <label for="customCurrencySymbol">Custom Currency Symbol</label>
+                    <input type="text" id="customCurrencySymbol" placeholder="e.g. ₩">
+                </div>
+                <div class="input-group">
+                    <label for="loanAmount">Loan Amount</label>
+                    <input type="number" id="loanAmount" required min="1" placeholder="e.g. 250000">
+                </div>
+                <div class="input-group">
+                    <label for="interestRate">Interest Rate (%)</label>
+                    <input type="number" id="interestRate" required min="0" step="0.1" placeholder="e.g. 5.5">
+                </div>
+                <div class="input-group">
+                    <label for="loanTerm">Loan Term (Years)</label>
+                    <input type="number" id="loanTerm" required min="1" max="40" placeholder="e.g. 30">
+                </div>
+                <button type="submit" class="calculate-btn">Calculate</button>
+            </form>
+        </div>
+
+        <div id="results" class="hidden">
+            <div class="results-card">
+                <h2>Payment Breakdown</h2>
+                <div class="breakdown">
+                    <div class="breakdown-item">
+                        <span>Monthly Payment</span>
+                        <span id="monthlyPayment">$0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Total Payment</span>
+                        <span id="totalPayment">$0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Total Interest</span>
+                        <span id="totalInterest">$0</span>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="paymentChart"></canvas>
+                </div>
+            </div>
+
+            <button id="printButton" class="print-btn">Print Results</button>
+
+            <div class="results-card">
+                <h2>Amortization Schedule</h2>
+                <div class="table-container">
+                    <table id="amortizationTable">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Payment</th>
+                                <th>Principal</th>
+                                <th>Interest</th>
+                                <th>Remaining Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
